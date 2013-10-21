@@ -1,0 +1,50 @@
+import java.util.Scanner;
+import java.util.Stack;
+
+public class RPN{
+	
+	
+	public static void main(String[] args){
+		
+		Scanner Pilha = new Scanner (System.in);
+		Stack<Integer> resultado = new Stack<Integer>();
+		System.out.print("Digite um número depois o segundo número e depois a operação, Aperte S para Sair.");
+		boolean done = false;
+		
+		while(!done){
+		
+		String input = Pilha.nextLine();
+		if (input.equals("+")){
+			resultado.push(resultado.pop()+resultado.pop());
+		}
+		
+		else if (input.equals("-")){
+			Integer arg2 = resultado.pop();
+		
+			resultado.push(resultado.pop()-arg2);
+		}
+		else if(input.equals("*") || input.equals("x")){
+			
+			 resultado.push(resultado.pop() * resultado.pop());
+		}
+		else if (input.equals("/")){
+			
+			Integer arg2 = resultado.pop();
+			
+			resultado.push(resultado.pop() / arg2);
+		}
+		else if(input.equals("S") || input.equals("s")){
+			done = true;
+		}
+		else{
+			resultado.push(Integer.parseInt(input));
+		}
+		System.out.print("Resultado = " + resultado);	
+			
+		}
+			
+		}
+	}
+	
+	
+
