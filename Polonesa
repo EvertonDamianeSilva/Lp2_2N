@@ -1,0 +1,49 @@
+
+    import java.util.*;
+     
+    public class Polonesa {
+     
+            private static Scanner input;
+     
+            static String converterEq (String eqTrad){
+                    Stack<Character> pilha = new Stack<Character>();
+                    String eqPolski = "";
+                    int i = 0;
+                    while(i < eqTrad.length()){
+                            char aux = eqTrad.charAt(i);
+                            if((aux >= '0' && aux <= '9') || (aux >= 'a' && aux <= 'z')){
+                                    eqPolski += aux;
+                            }
+                            if(aux == '+' || aux == '-' || aux == '*' || aux == '/'){
+                                    while(!pilha.empty() && (pilha.peek() > aux)){
+                                            eqPolski += pilha.pop();
+                                    }
+                                    pilha.push(aux);
+                            }
+                            if(aux == '('){
+                                    pilha.push(aux);
+                            }
+                            if(aux == ')'){
+                                    while(pilha.peek() != '(' ){
+                                            eqPolski += pilha.pop();
+                                    }
+                                    pilha.pop();
+                            }
+                            i++;
+                    }
+                    while(!pilha.empty()){
+                            eqPolski += pilha.pop();
+                    }
+                    return (eqPolski);
+            }
+           
+            public static void main(String[] args) {
+                    input = new Scanner(System.in);
+                    String eqTrad;
+                    System.out.print("Digite a equação: ");
+                    eqTrad = input.next();
+                    System.out.println("Equação Polonesa Reversa: "+ converterEq (eqTrad));
+            }
+     
+    }
+
